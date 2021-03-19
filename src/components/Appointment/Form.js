@@ -20,6 +20,8 @@ export default function Form (props) {
 
   }
 
+  props.save(name, interviewer)
+
   return (
 
     <main className="appointment__card appointment__card--create">

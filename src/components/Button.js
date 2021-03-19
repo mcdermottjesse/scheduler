@@ -1,8 +1,8 @@
 import React from "react";
 import classNames from "classnames"
 import "components/Button.scss";
-import { action } from "@storybook/addon-actions/dist/preview";
-import { configureActions } from "@storybook/addon-actions/dist/preview/configureActions";
+// import { action } from "@storybook/addon-actions/dist/preview";
+// import { configureActions } from "@storybook/addon-actions/dist/preview/configureActions";
 
 //refer to index.js
 export default function Button(props) {
