@@ -15,22 +15,20 @@ export default function Application(props) {
 
   function bookInterview(id, interview) {
 
-    // const appointment = {
-    //   ...state.appointments[id],
-    //   interview: { ...interview }
-    // };
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
 
-    // const appointments = {
-    //   ...state.appointments,
-    //   [id]: appointment
-    // };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
 
-    // setState({ ...state, appointments})
+    setState({ ...state, appointments})
     
-    console.log(id, interview);
+    console.log("Hello", id, interview);
   }
-
-
 
   const setDay = (day) => setState({ ...state, day });
 
@@ -59,7 +57,7 @@ export default function Application(props) {
       <Appointment
         
         key={appointment.id}
-        id={appointment.interview}
+        id={appointment.id}
         time={appointment.time}
         interview={interview}
         interviewers={dailyInterviewers} 
