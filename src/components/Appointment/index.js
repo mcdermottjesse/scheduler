@@ -10,7 +10,7 @@ import "./styles.scss"
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
-const CREATE = "CREATE"
+const CREATE = "CREATE";
   
 export default function Appointment (props){
 
@@ -26,7 +26,9 @@ const{ mode, transition, back } = useVisualMode(
     console.log("inter", interview)
     
     props.bookInterview(props.id, interview)
-    transition(SHOW);
+    .then(() => transition(SHOW))
+    .catch((error) => console.log(error))
+    
   }
  
    
@@ -40,8 +42,6 @@ const{ mode, transition, back } = useVisualMode(
     <Show
       student={props.interview.student}
       interviewer={props.interview.interviewer}
-      
-      
     />
    
   )}
