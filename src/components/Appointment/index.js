@@ -6,6 +6,8 @@ import Show from "./Show"
 import Form from "./Form"
 import Empty from "./Empty"
 import Status from "./Status"
+import Confirm from "./Confirm"
+// import Error from "./Error"
 import "./styles.scss"
 
 
@@ -13,6 +15,8 @@ const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
+const DELETING = "DELETING";
+const CONFIRM = "CONFIRM";
   
 export default function Appointment (props){
 
@@ -20,13 +24,11 @@ const{ mode, transition, back } = useVisualMode(
   props.interview ? SHOW : EMPTY
   );
 
-  function save(name, interviewer) {
+  const save = (name, interviewer) => {
     const interview = {
       student: name,
       interviewer
     };
-    console.log("inter", interview)
-    
     transition(SAVING)
 
     props.bookInterview(props.id, interview)
@@ -34,10 +36,21 @@ const{ mode, transition, back } = useVisualMode(
     .catch((error) => console.log(error))
     
   }
- 
-   
+
+  const deleteInt = () => {
+    console.log("deleteInt")
+    transition(DELETING);
+    props.cancelInterview(props.id)
+    .then(() => transition(EMPTY))
+    .catch((error) => console.log(error))
+  }
+
+  const showDelete = () => {
+    transition(CONFIRM)
+  }
+
   return (
-     
+    
 <article className="appointment">
   <Header time={props.time} />
   
@@ -46,20 +59,38 @@ const{ mode, transition, back } = useVisualMode(
     <Show
       student={props.interview.student}
       interviewer={props.interview.interviewer}
+      onDelete={showDelete}
+      
     />
    
   )}
   {mode === CREATE && (
     <Form 
     interviewers={props.interviewers}
-    onCancel={back}
+    onCancel={() => back(EMPTY)}
     onSave={save}
+    
   />
   )}
 
-  {mode === SAVING &&(
-    <Status saveMessage={"SAVING"} />
+  {mode === SAVING && (
+    <Status saveMessage = {SAVING} />
   )}
+
+  {mode === DELETING && (
+    <Status deleteMessage = {DELETING} />
+  )}
+
+  {mode === CONFIRM && (
+    <Confirm
+    onConfirm={deleteInt}
+    onCancel={() => back(SHOW)}
+    message={"Are you sure you want to delete"}
+    />
+  )
+  
+  }
+
   </article>
 );
  }

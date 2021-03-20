@@ -9,7 +9,7 @@ export default function Confirm (props) {
   <section className="appointment__actions">
     <Button danger onClick={props.onCancel}>Cancel</Button>
     <Button danger onClick={props.onConfirm}>Confirm</Button>
-    {props.onConfirm}
+    {/* {props.onConfirm} */}
   </section>
 </main>
 
