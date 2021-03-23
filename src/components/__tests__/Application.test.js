@@ -10,6 +10,6 @@ it("defaults to Monday and changes the schedule when a new day is selected", () 
   const { getByText } = render(<Application />);
   return waitForElement(() => getByText("Monday")).then(() => {
     fireEvent.click(getByText("Tuesday"));
-    expect(getByText("Jesse McDermott")).toBeInTheDocument();
+    expect(getByText("Leopold Silvers")).toBeInTheDocument();
   });
 });
