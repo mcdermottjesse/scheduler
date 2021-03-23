@@ -38,7 +38,6 @@ export default function useApplicationData(props) {
       [id]: appointment,
     };
 
-    console.log(id, interview);
     return axios
       .put(`/api/appointments/${id}`, { interview })
       .then(() =>

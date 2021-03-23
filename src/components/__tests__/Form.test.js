@@ -48,7 +48,7 @@ describe("Form", () => {
     );
   
     fireEvent.click(getByText("Save"));
-  
+      //i = regular expression for case-sensitive search
     expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();
     expect(onSave).not.toHaveBeenCalled();
   
