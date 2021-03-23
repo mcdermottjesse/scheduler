@@ -14,9 +14,7 @@ export default function DayListItem(props) {
   //don't need curly braces as it is a one line func aka implicit return
   const formatSpots = () =>
     (props.spots ? `${props.spots} spot${props.spots > 1 ? `s` : ``} remaining`: `no spots remaining`)
-    // console.log(formatSpots())
-  
-
+    
   return (
     //did not need to include event in onClick as it is a stated action in index.js
     <li onClick={() => props.setDay(props.name)}
