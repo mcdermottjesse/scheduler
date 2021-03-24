@@ -177,6 +177,49 @@ describe("Application", () => {
       queryByText(day, "Monday")
        );
        expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+     
+  })
+  it("shows the delete error when failing to delete an existing appointment", async () => {
+    axios.delete.mockRejectedValueOnce()
+    // 1. Render the Application.
+    const { container, debug } = render(<Application />);
+
+    // 2. Wait until the text "Archie Cohen" is displayed.
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+
+    
+    // const appointments = getAllByTestId(container, "appointment");
+    // const appointment = appointments[1];
+
+    //can use above or below for step 3
+    // 3. Click the "Delete" button on the booked appointment.
+    const appointment = getAllByTestId(container, "appointment").find(
+      appointment => queryByText(appointment, "Archie Cohen")
+    );
+  
+    fireEvent.click(getByAltText(appointment, "Delete"));
+    
+    // 4. Check that the confirmation message is shown.
+    expect(getByText(appointment, "Are you sure you want to delete")).toBeInTheDocument();
+    
+    // 5. Click the "Confirm" button on the confirmation.
+    // fireEvent.click(queryByText(appointment, "Confirm"));
+    fireEvent.click(getByText(appointment, "Confirm"))
+
+    // 6. Check that the element with the text "Deleting" is displayed.
+    expect(getByText(appointment, "DELETING")).toBeInTheDocument();
+
+    // 7. Wait until the text "Error" is displayed.
+     await waitForElement(() => getByText(container, "Error"));
+     // 8 .Check that the error message is shown
+     expect(getByText(appointment,"There was a problem deleting your appointment")).toBeInTheDocument();
+
+     // 9. Check that the DayListItem with the text "Monday" still has the text "1 spot remaining".
+    const day = getAllByTestId(container, "day").find(day =>
+      queryByText(day, "Monday")
+       );
+       expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+
      debug()
   })
 });
