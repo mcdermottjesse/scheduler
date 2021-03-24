@@ -19,6 +19,7 @@ export default function DayListItem(props) {
     //did not need to include event in onClick as it is a stated action in index.js
     <li onClick={() => props.setDay(props.name)}
       className={dayClass}
+      data-testid="day"
       >
 
       <h2 className="text--regular">{props.name}</h2> 
