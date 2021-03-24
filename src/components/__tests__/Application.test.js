@@ -1,5 +1,5 @@
 import React from "react";
-
+import axios from "axios";
 import {
   render,
   cleanup,
@@ -15,7 +15,7 @@ import {
 } from "@testing-library/react";
 
 import Application from "components/Application";
-import axios from "__mocks__/axios";
+
 
 afterEach(cleanup);
 
