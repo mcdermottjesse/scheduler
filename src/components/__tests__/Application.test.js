@@ -28,15 +28,6 @@ describe("Application", () => {
     });
   });
 
-  //can also implent test as per below
-
-  // it("changes the schedule when a new day is selected", async () => {
-  //   const { getByText } = render(<Application />);
-  //   await waitForElement(() => getByText("Monday"));
-  //   fireEvent.click(getByText("Tuesday"));
-  //   expect(getByText("Leopold Silvers")).toBeInTheDocument();
-  // });
-
   it("loads data, books an interview and reduces the spots remaining fot the first day by 1", async () => {
     // 1. Render the Application.
     const { container, debug } = render(<Application />);

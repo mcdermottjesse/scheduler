@@ -38,15 +38,13 @@ export default function useApplicationData(props) {
       [id]: appointment,
     };
 
-    return axios
-      .put(`/api/appointments/${id}`, { interview })
-      .then(() =>
-        setState({
-          ...state,
-          appointments,
-          days: updatedSopts(state.days, appointments),
-        })
-      );
+    return axios.put(`/api/appointments/${id}`, { interview }).then(() =>
+      setState({
+        ...state,
+        appointments,
+        days: updatedSopts(state.days, appointments),
+      })
+    );
   }
 
   function cancelInterview(id) {
@@ -60,15 +58,13 @@ export default function useApplicationData(props) {
       [id]: appointment,
     };
 
-    return axios
-      .delete(`/api/appointments/${id}`)
-      .then(() =>
-        setState({
-          ...state,
-          appointments,
-          days: updatedSopts(state.days, appointments),
-        })
-      );
+    return axios.delete(`/api/appointments/${id}`).then(() =>
+      setState({
+        ...state,
+        appointments,
+        days: updatedSopts(state.days, appointments),
+      })
+    );
   }
 
   const setDay = (day) => setState({ ...state, day });
