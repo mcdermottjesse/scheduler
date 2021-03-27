@@ -20,7 +20,7 @@ export default function useApplicationData(props) {
     return count;
   };
 
-  const updatedSopts = (days, appointments) => {
+  const updatedSpots = (days, appointments) => {
     const newArr = days.map((day) => ({
       ...day,
       spots: availSpots(day, appointments),
@@ -42,7 +42,7 @@ export default function useApplicationData(props) {
       setState({
         ...state,
         appointments,
-        days: updatedSopts(state.days, appointments),
+        days: updatedSpots(state.days, appointments),
       })
     );
   }
@@ -62,7 +62,7 @@ export default function useApplicationData(props) {
       setState({
         ...state,
         appointments,
-        days: updatedSopts(state.days, appointments),
+        days: updatedSpots(state.days, appointments),
       })
     );
   }
